@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Jason D. Tnem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--black:#0d0d0d;--white:#f5f2ec;--accent:#c8a96e;--mid:#6b6b6b;--border:rgba(13,13,13,0.12);--nav-h:72px;--navy:#1a1f2e;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+    img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}ul{list-style:none;}
+    h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.1;}
+    h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;}h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;}h3{font-size:1.1rem;font-weight:700;}
+    .container{width:min(1140px,92vw);margin-inline:auto;}.section{padding-block:clamp(40px,6vw,80px);}
+    .label{display:inline-block;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+    .divider{width:48px;height:2px;background:var(--accent);margin-block:1.2rem;}
+    .btn{display:inline-block;padding:.85rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--black);background:transparent;color:var(--black);transition:background .25s,color .25s;cursor:pointer;}
+    .btn:hover{background:var(--black);color:var(--white);}.btn--fill{background:var(--black);color:var(--white);}
+    .btn--fill:hover{background:var(--accent);border-color:var(--accent);color:var(--black);}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07);transition:box-shadow .3s;}
+    nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.35);}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:min(1140px,92vw);margin-inline:auto;}
+    .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#fff;}.logo span{color:var(--accent);}
+    .nav-links{display:flex;gap:2rem;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;}
+    .nav-links a{color:rgba(255,255,255,.6);position:relative;transition:color .25s;}.nav-links a:hover{color:#fff;}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}.nav-links a.active{color:#fff;}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+    .burger span{display:block;width:24px;height:1.5px;background:#fff;}
+    .drawer{display:none;position:fixed;inset:0;z-index:99;background:var(--navy);padding-top:var(--nav-h);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+    .drawer.open{display:flex;}.drawer a{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#fff;}.drawer a:hover{color:var(--accent);}
+    main{padding-top:var(--nav-h);}
+    .page-hero{padding-block:clamp(60px,10vw,120px);border-bottom:1px solid var(--border);}
+    .page-tag{font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:block;}
+    .bio{display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start;}
+    .bio-photo{position:sticky;top:calc(var(--nav-h) + 2rem);}
+    .bio-img{width:100%;aspect-ratio:3/4;background:#e8e4dc;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--mid);position:relative;overflow:hidden;}
+    .bio-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+    .bio-img::before{content:'';position:absolute;top:16px;left:16px;right:-16px;bottom:-16px;border:1.5px solid var(--accent);z-index:-1;}
+    .bio-caption{margin-top:1.2rem;font-size:.75rem;color:var(--mid);}
+    .bio-text h2{margin-bottom:1rem;}.bio-text p{color:var(--mid);line-height:1.9;margin-bottom:1.4rem;font-size:.95rem;}
+    .bio-text p strong{color:var(--black);font-weight:500;}
+    .facts{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;}
+    .facts h3{margin-bottom:1rem;font-size:.9rem;}
+    .fact{display:flex;gap:1rem;align-items:flex-start;padding-block:.9rem;border-bottom:1px solid var(--border);}
+    .fact:last-child{border-bottom:none;}.fact-icon{font-size:1rem;flex-shrink:0;}
+    .fact-text{font-size:.88rem;color:var(--mid);}.fact-text strong{color:var(--black);font-weight:500;display:block;}
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;}
+    .value-card{padding:2rem;border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .3s;}
+    .value-card:hover{border-color:var(--accent);}
+    .value-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:transparent;-webkit-text-stroke:1px var(--border);position:absolute;top:-.5rem;right:1rem;line-height:1;}
+    .value-card h3{font-size:1rem;margin-bottom:.5rem;}.value-card p{font-size:.83rem;color:var(--mid);line-height:1.75;}
+    footer{background:var(--black);color:var(--white);padding-block:3rem;}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .footer-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;}.footer-logo span{color:var(--accent);}
+    .footer-links{display:flex;gap:2rem;}.footer-links a{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;opacity:.5;transition:opacity .2s;}.footer-links a:hover{opacity:1;}
+    .footer-copy{width:100%;text-align:center;font-size:.7rem;opacity:.3;margin-top:2rem;}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.reveal.visible{opacity:1;transform:none;}
+    @media(max-width:768px){.nav-links{display:none;}.burger{display:flex;}.bio{grid-template-columns:1fr;gap:3rem;}.bio-photo{position:static;}.values-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Jason<span>Tnem</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <a href="index.html" onclick="closeDrawer()">Home</a><a href="about.html" onclick="closeDrawer()">About</a>
+  <a href="skills.html" onclick="closeDrawer()">Skills</a><a href="projects.html" onclick="closeDrawer()">Projects</a>
+  <a href="gallery.html" onclick="closeDrawer()">Gallery</a><a href="contact.html" onclick="closeDrawer()">Contact</a>
+</div>
+<main>
+  <section class="page-hero section"><div class="container"><span class="page-tag">About Me</span><h1>The person<br>behind the screen.</h1></div></section>
+  <section class="section"><div class="container"><div class="bio">
+    <div class="bio-photo reveal">
+      <div class="bio-img"><img src="https://placehold.co/600x800/e8e4dc/6b6b6b?text=Jason+D.+Tnem" alt="Jason D. Tnem"></div>
+      <p class="bio-caption">📍 T'boli, South Cotabato, SOCCSKSARGEN, Philippines</p>
+    </div>
+    <div class="bio-text">
+      <span class="label">My Story</span>
+      <h2>Curious, driven, and always building.</h2>
+      <div class="divider"></div>
+      <p>Hi, I'm <strong>Jason D. Tnem</strong> — a web development student from T'boli, South Cotabato, Philippines. Growing up in SOCCSKSARGEN didn't stop me from dreaming big in tech. If anything, it pushed me harder.</p>
+      <p>I'm currently completing WD101, where I've been learning the fundamentals of web development — HTML, CSS, responsive design, and JavaScript. Every project I build teaches me something new, and I genuinely love the process of turning a blank page into something real and functional.</p>
+      <p>Outside of coding, I enjoy exploring the nature around T'boli, listening to music, and finding creative ways to solve everyday problems. My goal is simple: <strong>build things that matter and keep getting better at it.</strong></p>
+      <a href="contact.html" class="btn btn--fill">Let's Connect</a>
+      <div class="facts">
+        <h3>Quick Facts</h3>
+        <div class="fact"><span class="fact-icon">🎓</span><div class="fact-text"><strong>Currently studying</strong>WD101 — Web Development Fundamentals</div></div>
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-text"><strong>Hometown</strong>T'boli, South Cotabato, SOCCSKSARGEN, Philippines</div></div>
+        <div class="fact"><span class="fact-icon">💻</span><div class="fact-text"><strong>Tools I use</strong>VS Code, GitHub, Chrome DevTools, Figma, Netlify</div></div>
+        <div class="fact"><span class="fact-icon">🌐</span><div class="fact-text"><strong>Skills</strong>HTML5, CSS3, JavaScript, Responsive Design, Git</div></div>
+        <div class="fact"><span class="fact-icon">🎯</span><div class="fact-text"><strong>Goal</strong>To become a full-stack developer and build products that help people</div></div>
+      </div>
+    </div>
+  </div></div></section>
+  <section class="section" style="border-top:1px solid var(--border)"><div class="container">
+    <span class="label reveal">How I Think</span>
+    <h2 class="reveal">Three things I live by.</h2>
+    <div class="values-grid">
+      <div class="value-card reveal"><span class="value-num">01</span><h3>Build to learn.</h3><p>I don't wait until I'm ready. I start building and figure things out along the way — that's where the real learning happens.</p></div>
+      <div class="value-card reveal"><span class="value-num">02</span><h3>Keep it clean.</h3><p>Whether it's code or design, clarity and simplicity always win. Clean work is easier to maintain, easier to understand, and easier to love.</p></div>
+      <div class="value-card reveal"><span class="value-num">03</span><h3>Never settle.</h3><p>There's always something new to learn in web development. I embrace that — the day I stop growing is the day I fall behind.</p></div>
+    </div>
+  </div></section>
+</main>
+<footer><div class="container footer-inner">
+  <span class="footer-logo">Jason<span>Tnem</span></span>
+  <nav class="footer-links"><a href="about.html">About</a><a href="projects.html">Work</a><a href="contact.html">Contact</a></nav>
+  <p class="footer-copy">© 2025 Jason D. Tnem. All rights reserved.</p>
+</div></footer>
+<script>
+  const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+  document.getElementById('burger').addEventListener('click',()=>document.getElementById('drawer').classList.toggle('open'));
+  function closeDrawer(){document.getElementById('drawer').classList.remove('open');}
+  const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+</script>
+</body></html>

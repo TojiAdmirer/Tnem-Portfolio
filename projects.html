@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Jason D. Tnem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--black:#0d0d0d;--white:#f5f2ec;--accent:#c8a96e;--mid:#6b6b6b;--border:rgba(13,13,13,0.12);--nav-h:72px;--navy:#1a1f2e;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+    body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+    img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}ul{list-style:none;}
+    h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.1;}
+    h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;}h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;}h3{font-size:1.1rem;font-weight:700;}
+    .container{width:min(1140px,92vw);margin-inline:auto;}.section{padding-block:clamp(40px,6vw,80px);}
+    .label{display:inline-block;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+    .btn{display:inline-block;padding:.85rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--black);background:transparent;color:var(--black);transition:background .25s,color .25s;cursor:pointer;}
+    .btn:hover{background:var(--black);color:var(--white);}.btn--fill{background:var(--black);color:var(--white);}.btn--fill:hover{background:var(--accent);border-color:var(--accent);color:var(--black);}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07);transition:box-shadow .3s;}
+    nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.35);}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:min(1140px,92vw);margin-inline:auto;}
+    .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#fff;}.logo span{color:var(--accent);}
+    .nav-links{display:flex;gap:2rem;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;}
+    .nav-links a{color:rgba(255,255,255,.6);position:relative;transition:color .25s;}.nav-links a:hover{color:#fff;}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}.nav-links a.active{color:#fff;}
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+    .burger span{display:block;width:24px;height:1.5px;background:#fff;}
+    .drawer{display:none;position:fixed;inset:0;z-index:99;background:var(--navy);padding-top:var(--nav-h);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+    .drawer.open{display:flex;}.drawer a{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#fff;}.drawer a:hover{color:var(--accent);}
+    main{padding-top:var(--nav-h);}
+    .page-hero{padding-block:clamp(60px,10vw,120px);border-bottom:1px solid var(--border);}
+    .page-tag{font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:block;}
+    .project{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding-block:5rem;border-bottom:1px solid var(--border);}
+    .project:first-child{padding-top:0;}.project:nth-child(even) .proj-visual{order:-1;}
+    .proj-visual{position:relative;}
+    .proj-img{width:100%;aspect-ratio:16/10;background:#e0dbd1;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;color:var(--mid);font-size:.8rem;}
+    .proj-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+    .proj-num{position:absolute;top:-1.5rem;right:-1rem;font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:transparent;-webkit-text-stroke:1px var(--border);line-height:1;z-index:-1;}
+    .tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+    .tag{font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid var(--border);color:var(--mid);}
+    .proj-text h2{margin-bottom:.9rem;font-size:clamp(1.4rem,3vw,2rem);}
+    .proj-text p{color:var(--mid);line-height:1.85;margin-bottom:1.8rem;}
+    .proj-links{display:flex;gap:1rem;flex-wrap:wrap;}
+    .more-cta{text-align:center;border-top:1px solid var(--border);}
+    .more-cta h2{margin-bottom:1rem;}.more-cta p{color:var(--mid);max-width:400px;margin:0 auto 2rem;font-size:.9rem;}
+    footer{background:var(--black);color:var(--white);padding-block:3rem;}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .footer-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;}.footer-logo span{color:var(--accent);}
+    .footer-links{display:flex;gap:2rem;}.footer-links a{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;opacity:.5;transition:opacity .2s;}.footer-links a:hover{opacity:1;}
+    .footer-copy{width:100%;text-align:center;font-size:.7rem;opacity:.3;margin-top:2rem;}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.reveal.visible{opacity:1;transform:none;}
+    @media(max-width:768px){.nav-links{display:none;}.burger{display:flex;}.project{grid-template-columns:1fr;gap:2.5rem;}.project:nth-child(even) .proj-visual{order:0;}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Jason<span>Tnem</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li><li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <a href="index.html" onclick="closeDrawer()">Home</a><a href="about.html" onclick="closeDrawer()">About</a>
+  <a href="skills.html" onclick="closeDrawer()">Skills</a><a href="projects.html" onclick="closeDrawer()">Projects</a>
+  <a href="gallery.html" onclick="closeDrawer()">Gallery</a><a href="contact.html" onclick="closeDrawer()">Contact</a>
+</div>
+<main>
+  <section class="page-hero section"><div class="container"><span class="page-tag">Selected Work</span><h1>Projects I'm<br>proud of.</h1></div></section>
+  <section class="section"><div class="container">
+    <article class="project reveal">
+      <div class="proj-text">
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive</span></div>
+        <h2>Personal Portfolio Website</h2>
+        <p>A fully responsive multi-page portfolio website built entirely from scratch. Features smooth scroll animations, a mobile hamburger menu, an animated marquee strip, scroll-triggered reveal effects, and a working contact form connected to Formspree. Every line of HTML, CSS, and JavaScript written by hand.</p>
+        <div class="proj-links"><a href="#" class="btn btn--fill">Live Demo ↗</a></div>
+      </div>
+      <div class="proj-visual"><span class="proj-num" aria-hidden="true">01</span>
+        <div class="proj-img"><img src="https://placehold.co/800x500/e0dbd1/6b6b6b?text=Portfolio+Website" alt="Portfolio Website"></div>
+      </div>
+    </article>
+    <article class="project reveal">
+      <div class="proj-visual"><span class="proj-num" aria-hidden="true">02</span>
+        <div class="proj-img"><img src="https://placehold.co/800x500/dde0d1/6b6b6b?text=Product+Landing+Page" alt="Product Landing Page"></div>
+      </div>
+      <div class="proj-text">
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS Grid</span><span class="tag">JavaScript</span></div>
+        <h2>Product Landing Page</h2>
+        <p>A sleek, conversion-focused landing page built for a fictional local product from South Cotabato. Uses CSS Grid for a magazine-style product showcase, features a sticky header, smooth section transitions, and a responsive image gallery. Optimized for mobile users first.</p>
+        <div class="proj-links"><a href="#" class="btn btn--fill">Live Demo ↗</a></div>
+      </div>
+    </article>
+    <article class="project reveal">
+      <div class="proj-text">
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Flexbox</span></div>
+        <h2>T'boli Culture Blog</h2>
+        <p>A static blog website dedicated to showcasing the rich cultural heritage of T'boli, South Cotabato. Built with semantic HTML and Flexbox layouts, featuring a clean reading experience, a categorized article grid, and embedded images of T'boli traditions, weaving, and festivals. A personal project close to my roots.</p>
+        <div class="proj-links"><a href="#" class="btn btn--fill">Live Demo ↗</a></div>
+      </div>
+      <div class="proj-visual"><span class="proj-num" aria-hidden="true">03</span>
+        <div class="proj-img"><img src="https://placehold.co/800x500/d1d8e0/6b6b6b?text=T%27boli+Culture+Blog" alt="T'boli Culture Blog"></div>
+      </div>
+    </article>
+  </div></section>
+  <section class="section more-cta"><div class="container">
+    <span class="label">What's Next</span><h2>More projects on the way.</h2>
+    <p>I'm always working on something. Got an idea you want to bring to life? Let's collaborate.</p>
+    <a href="contact.html" class="btn btn--fill">Work With Me</a>
+  </div></section>
+</main>
+<footer><div class="container footer-inner">
+  <span class="footer-logo">Jason<span>Tnem</span></span>
+  <nav class="footer-links"><a href="about.html">About</a><a href="projects.html">Work</a><a href="contact.html">Contact</a></nav>
+  <p class="footer-copy">© 2025 Jason D. Tnem. All rights reserved.</p>
+</div></footer>
+<script>
+  const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+  document.getElementById('burger').addEventListener('click',()=>document.getElementById('drawer').classList.toggle('open'));
+  function closeDrawer(){document.getElementById('drawer').classList.remove('open');}
+  const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+</script>
+</body></html>
